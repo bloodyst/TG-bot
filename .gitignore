@@ -3,3 +3,4 @@
 "memes/" 
 "*.pyc" 
 "__pycache__/" 
+".env" 
