@@ -1,0 +1,5 @@
+".idea/" 
+"bookings.db" 
+"memes/" 
+"*.pyc" 
+"__pycache__/" 
