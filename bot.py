@@ -441,4 +441,9 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    # Запускаем веб-сервер в фоновом потоке
+    webserver_thread = threading.Thread(target=run_webserver, daemon=True)
+    webserver_thread.start()
+
+    # Запускаем бота в основном потоке
+    asyncio.run(dp.start_polling(bot))
