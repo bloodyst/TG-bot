@@ -4,6 +4,26 @@ from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 import asyncio
 from datetime import datetime
+from fastapi import FastAPI
+import uvicorn
+import threading
+import os
+
+# Создаем фиктивный веб-сервер
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"status": "Bot is running!"}
+
+def run_webserver():
+    """Запускает веб-сервер в отдельном потоке"""
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=int(os.getenv("PORT", 10000)),  # Render сам подставляет порт
+        log_level="error"
+    )
 
 bot = Bot(token="7247653323:AAFrKE9L1hYCloZTHm32KCrqoeB4fwGBmoU")
 dp = Dispatcher()
