@@ -2,3 +2,4 @@ fastapi==0.95.2
 uvicorn==0.22.0
 aiogram==3.0.0b7
 python-dotenv==1.0.0
+tinydb==4.7.0
