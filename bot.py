@@ -25,6 +25,22 @@ def run_webserver():
         log_level="error"
     )
 
+from tinydb import TinyDB, Query
+db = TinyDB('players_db.json')  # Файл будет создан автоматически
+
+# В классе Player добавьте метод сохранения/загрузки
+def save(self):
+    db.upsert({'user_id': self.user_id, 'data': self.__dict__}, Query().user_id == self.user_id)
+
+@classmethod
+def load(cls, user_id):
+    data = db.get(Query().user_id == user_id)
+    if data:
+        player = cls(user_id)
+        player.__dict__.update(data['data'])
+        return player
+    return None
+
 bot = Bot(token="7247653323:AAFrKE9L1hYCloZTHm32KCrqoeB4fwGBmoU")
 dp = Dispatcher()
 
